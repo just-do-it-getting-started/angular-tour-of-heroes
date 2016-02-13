@@ -1,7 +1,6 @@
-import {Component} from 'angular2/core';
+import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
-import {OnInit} from 'angular2/core';
 
 @Component({
     selector: 'my-hero-list',
@@ -69,6 +68,9 @@ import {OnInit} from 'angular2/core';
 export class HeroListComponent implements OnInit {
     selectedHero: Hero;
 
+    @Output()
+    clickHero = new EventEmitter();
+
     heroes: Hero[];
     constructor(private _heroService: HeroService) { }
 
@@ -77,7 +79,7 @@ export class HeroListComponent implements OnInit {
     }
 
     public onSelect(hero: Hero) {
-        this.selectedHero = hero;
+        this.clickHero.next(hero);
     }
 
     public getHeroes() {

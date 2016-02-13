@@ -26,10 +26,13 @@ System.register(['angular2/core', './hero-list.component', './hero-detail.compon
                 function AppComponent() {
                     this.title = 'Tour of Heroes';
                 }
+                AppComponent.prototype.onClickHero = function (hero) {
+                    this.selectedHero = hero;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{title}}</h1>\n        <my-hero-list></my-hero-list>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
+                        template: "\n        <h1>{{title}}</h1>\n        <my-hero-list (clickHero)=\"onClickHero($event)\"></my-hero-list>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
                         directives: [hero_list_component_1.HeroListComponent, hero_detail_component_1.HeroDetailComponent]
                     }), 
                     __metadata('design:paramtypes', [])

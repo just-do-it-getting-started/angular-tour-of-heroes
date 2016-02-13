@@ -22,17 +22,22 @@ System.register(['angular2/core', './hero.service'], function(exports_1) {
             HeroListComponent = (function () {
                 function HeroListComponent(_heroService) {
                     this._heroService = _heroService;
+                    this.clickHero = new core_1.EventEmitter();
                 }
                 HeroListComponent.prototype.ngOnInit = function () {
                     this.getHeroes();
                 };
                 HeroListComponent.prototype.onSelect = function (hero) {
-                    this.selectedHero = hero;
+                    this.clickHero.next(hero);
                 };
                 HeroListComponent.prototype.getHeroes = function () {
                     var _this = this;
                     this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], HeroListComponent.prototype, "clickHero", void 0);
                 HeroListComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-list',
