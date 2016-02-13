@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-list.component', './hero-detail.component'], function(exports_1) {
+System.register(['angular2/core', './hero-list.component', './hero-detail.component', './hero.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './hero-list.component', './hero-detail.compon
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_list_component_1, hero_detail_component_1;
+    var core_1, hero_list_component_1, hero_detail_component_1, hero_service_1;
     var AppComponent;
     return {
         setters:[
@@ -20,22 +20,33 @@ System.register(['angular2/core', './hero-list.component', './hero-detail.compon
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_heroService) {
+                    this._heroService = _heroService;
                     this.title = 'Tour of Heroes';
                 }
+                AppComponent.prototype.ngOnInit = function () {
+                    this.getHeroes();
+                };
+                AppComponent.prototype.getHeroes = function () {
+                    var _this = this;
+                    this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+                };
                 AppComponent.prototype.onClickHero = function (hero) {
                     this.selectedHero = hero;
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{title}}</h1>\n        <my-hero-list (clickHero)=\"onClickHero($event)\"></my-hero-list>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
+                        template: "\n        <h1>{{title}}</h1>\n        <my-hero-list [heroes]=\"heroes\" (clickHero)=\"onClickHero($event)\"></my-hero-list>\n        <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
                         directives: [hero_list_component_1.HeroListComponent, hero_detail_component_1.HeroDetailComponent]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [hero_service_1.HeroService])
                 ], AppComponent);
                 return AppComponent;
             })();

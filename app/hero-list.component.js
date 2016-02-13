@@ -24,17 +24,14 @@ System.register(['angular2/core', './hero.service'], function(exports_1) {
                     this._heroService = _heroService;
                     this.clickHero = new core_1.EventEmitter();
                 }
-                HeroListComponent.prototype.ngOnInit = function () {
-                    this.getHeroes();
-                };
                 HeroListComponent.prototype.onSelect = function (hero) {
                     this.selectedHero = hero;
                     this.clickHero.next(this.selectedHero);
                 };
-                HeroListComponent.prototype.getHeroes = function () {
-                    var _this = this;
-                    this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
-                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', hero_service_1.HeroService)
+                ], HeroListComponent.prototype, "heroes", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)
@@ -43,7 +40,6 @@ System.register(['angular2/core', './hero.service'], function(exports_1) {
                     core_1.Component({
                         selector: 'my-hero-list',
                         template: "\n        <h2>My Heroes</h2>\n        <ul class=\"heroes\">\n            <li *ngFor=\"#hero of heroes\"\n              [class.selected]=\"hero === selectedHero\"\n              (click)=\"onSelect(hero)\">\n              <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n            </li>\n        </ul>\n    ",
-                        providers: [hero_service_1.HeroService],
                         styles: ["\n      .selected {\n        background-color: #CFD8DC !important;\n        color: white;\n      }\n      .heroes {\n        margin: 0 0 2em 0;\n        list-style-type: none;\n        padding: 0;\n        width: 10em;\n      }\n      .heroes li {\n        cursor: pointer;\n        position: relative;\n        left: 0;\n        background-color: #EEE;\n        margin: .5em;\n        padding: .3em 0em;\n        height: 1.6em;\n        border-radius: 4px;\n      }\n      .heroes li.selected:hover {\n        color: white;\n      }\n      .heroes li:hover {\n        color: #607D8B;\n        background-color: #EEE;\n        left: .1em;\n      }\n      .heroes .text {\n        position: relative;\n        top: -3px;\n      }\n      .heroes .badge {\n        display: inline-block;\n        font-size: small;\n        color: white;\n        padding: 0.8em 0.7em 0em 0.7em;\n        background-color: #607D8B;\n        line-height: 1em;\n        position: relative;\n        left: -1px;\n        top: -4px;\n        height: 1.8em;\n        margin-right: .8em;\n        border-radius: 4px 0px 0px 4px;\n      }\n    "]
                     }), 
                     __metadata('design:paramtypes', [hero_service_1.HeroService])

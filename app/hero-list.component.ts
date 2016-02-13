@@ -14,7 +14,6 @@ import {HeroService} from './hero.service';
             </li>
         </ul>
     `,
-    providers: [HeroService],
     styles:[`
       .selected {
         background-color: #CFD8DC !important;
@@ -65,8 +64,11 @@ import {HeroService} from './hero.service';
     `]
 })
 
-export class HeroListComponent implements OnInit {
+export class HeroListComponent{
     selectedHero: Hero;
+
+    @Input()
+    heroes: HeroService;
 
     @Output()
     clickHero = new EventEmitter();
@@ -74,16 +76,8 @@ export class HeroListComponent implements OnInit {
     heroes: Hero[];
     constructor(private _heroService: HeroService) { }
 
-    ngOnInit() {
-        this.getHeroes();
-    }
-
     public onSelect(hero: Hero) {
         this.selectedHero = hero;
         this.clickHero.next(this.selectedHero);
-    }
-
-    public getHeroes() {
-        this._heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
 }
