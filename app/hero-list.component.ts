@@ -79,7 +79,8 @@ export class HeroListComponent implements OnInit {
     }
 
     public onSelect(hero: Hero) {
-        this.clickHero.next(hero);
+        this.selectedHero = hero;
+        this.clickHero.next(this.selectedHero);
     }
 
     public getHeroes() {

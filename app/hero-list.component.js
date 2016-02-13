@@ -28,7 +28,8 @@ System.register(['angular2/core', './hero.service'], function(exports_1) {
                     this.getHeroes();
                 };
                 HeroListComponent.prototype.onSelect = function (hero) {
-                    this.clickHero.next(hero);
+                    this.selectedHero = hero;
+                    this.clickHero.next(this.selectedHero);
                 };
                 HeroListComponent.prototype.getHeroes = function () {
                     var _this = this;
