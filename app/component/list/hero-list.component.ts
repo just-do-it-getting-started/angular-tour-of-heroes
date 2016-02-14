@@ -73,7 +73,6 @@ export class HeroListComponent{
     @Output()
     clickHero = new EventEmitter();
 
-    heroes: Hero[];
     constructor(private _heroService: HeroService) { }
 
     public onSelect(hero: Hero) {
