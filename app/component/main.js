@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', './app.component', './hero.service'], function(exports_1) {
+System.register(['angular2/platform/browser', './app.component', './../service/hero.service'], function(exports_1) {
     var browser_1, app_component_1, hero_service_1;
     return {
         setters:[

@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
-import {Hero} from './hero';
-import {HeroService} from './hero.service';
+import {Hero} from './../../type/hero';
+import {HeroService} from './../../service/hero.service';
 
 @Component({
     selector: 'my-hero-list',
